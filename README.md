@@ -1,6 +1,7 @@
 Ephemeris
 ======
 
+[![](https://jitpack.io/v/kb0/kotlin-ephemeris.svg)](https://jitpack.io/#kb0/kotlin-ephemeris)
 [![Build Status](https://travis-ci.org/kb0/kotlin-ephemeris.svg?branch=master)](https://travis-ci.org/kb0/kotlin-ephemeris)
 [![Coverage Status](https://coveralls.io/repos/github/kb0/kotlin-ephemeris/badge.svg?branch=master)](https://coveralls.io/github/kb0/kotlin-ephemeris?branch=master)
 [![GitHub Issues](https://img.shields.io/github/issues/kb0/kotlin-ephemeris.svg?branch=master)](https://github.com/kb0/kotlin-ephemeris/issues)
