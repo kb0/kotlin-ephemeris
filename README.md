@@ -9,6 +9,7 @@ Ephemeris
 [![GitHub License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/kb0/kotlin-ephemeris/master/LICENSE)
 
 A library for calculating ephemerides for the Sun and/or the Moon (port from http://conga.oan.es/~alonso/doku.php?id=blog:sun_moon_position).
+Use ThreeTenBP (https://github.com/ThreeTen/threetenbp/) as date and time library.
 
 
 ## Features and bugs
