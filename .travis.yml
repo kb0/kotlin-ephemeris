@@ -1,0 +1,21 @@
+language: java
+jdk:
+  - openjdk8
+
+before_script:
+  - chmod +x gradlew
+
+jobs:
+  include:
+    - stage: analyze
+      script: ./gradlew assemble
+    - stage: test
+      script: ./gradlew test
+    - stage: coverage
+      script:
+        - ./gradlew jacocoTestReport
+        - ./gradlew jacocoTestCoverageVerification
+stages:
+  - build
+  - test
+  - coverage
