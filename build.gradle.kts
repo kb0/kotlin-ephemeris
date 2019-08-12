@@ -2,13 +2,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
+    maven
+
     kotlin("jvm") version "1.3.41"
 
     jacoco
 }
 
 group = "com.kbapps.ephemeris"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
