@@ -4,7 +4,9 @@ plugins {
     java
     maven
 
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm") version "1.3.61"
+
+    `maven-publish`
 
     jacoco
 }
@@ -49,6 +51,24 @@ tasks.jacocoTestCoverageVerification {
     }
 }
 
+tasks {
+    val sourcesJar by creating(Jar::class) {
+        archiveClassifier.set("sources")
+        from(sourceSets.main.get().allSource)
+    }
+
+    val javadocJar by creating(Jar::class) {
+        dependsOn.add(javadoc)
+        archiveClassifier.set("javadoc")
+        from(javadoc)
+    }
+
+    artifacts {
+        archives(sourcesJar)
+        archives(javadocJar)
+        archives(jar)
+    }
+}
 
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
