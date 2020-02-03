@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.kbapps.ephemeris"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     // https://github.com/ThreeTen/threetenbp/
-    implementation("org.threeten", "threetenbp", "1.4.0", classifier = "no-tzdb")
+    implementation("org.threeten", "threetenbp", "1.4.1", classifier = "no-tzdb")
 
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all
     testImplementation("org.hamcrest:hamcrest-all:1.3")

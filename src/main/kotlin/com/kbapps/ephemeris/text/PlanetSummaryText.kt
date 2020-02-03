@@ -7,6 +7,7 @@ import com.kbapps.ephemeris.planet.LunarState
 import com.kbapps.ephemeris.planet.PlanetMilestone
 import com.kbapps.ephemeris.type.DirectionType
 import org.threeten.bp.ZoneOffset
+import org.threeten.bp.ZonedDateTime
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -17,10 +18,13 @@ data class PlanetSummaryText(
     var lunarState: LunarState? = null,
 
     val riseTime: String,
+    val riseDatetime: ZonedDateTime?,
     val riseAzimuth: Double?,
     val dropTime: String,
+    val dropDatetime: ZonedDateTime?,
     val dropAzimuth: Double?,
     val transitTime: String,
+    val transitDatetime: ZonedDateTime?,
     val transitElevation: Double?
 ) {
 
@@ -60,12 +64,15 @@ data class PlanetSummaryText(
                 ),
 
                 riseTime = JulianDate.toTimeString(rise?.jd, zoneOffset, is12HoursFormat),
+                riseDatetime = JulianDate.toUTC(rise?.jd),
                 riseAzimuth = rise?.azimuthInDeg,
 
                 dropTime = JulianDate.toTimeString(drop?.jd, zoneOffset, is12HoursFormat),
+                dropDatetime = JulianDate.toUTC(drop?.jd),
                 dropAzimuth = drop?.azimuthInDeg,
 
                 transitTime = JulianDate.toTimeString(transit?.jd, zoneOffset, is12HoursFormat),
+                transitDatetime = JulianDate.toUTC(transit?.jd),
                 transitElevation = transit?.elevationInDeg
             )
         }

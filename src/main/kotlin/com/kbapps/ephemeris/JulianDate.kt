@@ -107,6 +107,15 @@ object JulianDate {
         return (jd + ttMinusUT / Constants.SECONDS_PER_DAY - Constants.J2000) / Constants.JULIAN_DAYS_PER_CENTURY
     }
 
+    fun toUTC(jd: Double?): ZonedDateTime? {
+        if (jd == null) {
+            return null
+        }
+
+        return toUTC(jd).atZone(ZoneOffset.UTC)
+            .withZoneSameInstant(ZoneOffset.UTC)
+    }
+
     fun toTimeString(jd: Double?, zoneOffset: ZoneOffset, is12HoursFormat: Boolean): String {
         return toTimeString(jd, zoneOffset, is12HoursFormat, false)
     }
