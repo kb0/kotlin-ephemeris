@@ -6,8 +6,8 @@ import com.kbapps.ephemeris.JulianDate
 import com.kbapps.ephemeris.planet.LunarState
 import com.kbapps.ephemeris.planet.PlanetMilestone
 import com.kbapps.ephemeris.type.DirectionType
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.ZonedDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import kotlin.math.abs
 import kotlin.math.roundToInt
 

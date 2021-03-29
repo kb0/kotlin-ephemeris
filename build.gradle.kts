@@ -4,7 +4,7 @@ plugins {
     java
     maven
 
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.4.31"
 
     `maven-publish`
 
@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.kbapps.ephemeris"
-version = "1.0.2"
+version = "2.0.0"
 
 repositories {
     mavenCentral()
@@ -20,9 +20,6 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-
-    // https://github.com/ThreeTen/threetenbp/
-    implementation("org.threeten", "threetenbp", "1.4.1", classifier = "no-tzdb")
 
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all
     testImplementation("org.hamcrest:hamcrest-all:1.3")

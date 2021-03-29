@@ -8,8 +8,8 @@ import org.hamcrest.text.IsEqualIgnoringWhiteSpace
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 class TwilightSummaryTest {
     @ParameterizedTest
@@ -31,7 +31,7 @@ class TwilightSummaryTest {
     ) {
 
         val formatter = DateTimeFormatter.ofPattern("HH:mm")
-        val grDate = org.threeten.bp.ZonedDateTime.parse(date)
+        val grDate = java.time.ZonedDateTime.parse(date)
 
         val solarData = PlanetMilestone.from(Solar(), grDate, latitude, longitude)
 

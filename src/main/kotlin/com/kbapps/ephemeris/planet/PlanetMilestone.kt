@@ -4,7 +4,7 @@ import com.kbapps.ephemeris.JulianDate
 import com.kbapps.ephemeris.PlanetPosition
 import com.kbapps.ephemeris.type.DirectionType
 import com.kbapps.ephemeris.type.ElevationType
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 data class PlanetMilestone(
     val startOfDayPosition: PlanetPosition,

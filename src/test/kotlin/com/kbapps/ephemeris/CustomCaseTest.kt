@@ -4,8 +4,8 @@ import com.kbapps.ephemeris.planet.Lunar
 import com.kbapps.ephemeris.planet.PlanetMilestone
 import com.kbapps.ephemeris.planet.Solar
 import org.junit.jupiter.api.Test
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.ZonedDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 
 
 class CustomCaseTest {

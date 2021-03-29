@@ -6,8 +6,8 @@ import com.kbapps.ephemeris.Utils
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
-import org.threeten.bp.LocalTime
-import org.threeten.bp.ZonedDateTime
+import java.time.LocalTime
+import java.time.ZonedDateTime
 
 
 class CalculatorTest {

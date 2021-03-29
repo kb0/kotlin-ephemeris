@@ -1,7 +1,7 @@
 package com.kbapps.ephemeris.text
 
 import com.kbapps.ephemeris.planet.*
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 import java.util.*
 

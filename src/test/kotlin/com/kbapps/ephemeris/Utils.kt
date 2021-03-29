@@ -1,7 +1,7 @@
 package com.kbapps.ephemeris
 
-import org.threeten.bp.LocalTime
-import org.threeten.bp.ZoneOffset
+import java.time.LocalTime
+import java.time.ZoneOffset
 
 /**
  * User: kb

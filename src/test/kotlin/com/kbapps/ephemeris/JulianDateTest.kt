@@ -3,8 +3,8 @@ package com.kbapps.ephemeris
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneOffset
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class CalculatorTest {
     @Test

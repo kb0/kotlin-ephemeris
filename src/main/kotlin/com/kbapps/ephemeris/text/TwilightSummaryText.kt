@@ -7,7 +7,7 @@ import com.kbapps.ephemeris.PlanetPosition
 import com.kbapps.ephemeris.planet.PlanetMilestone
 import com.kbapps.ephemeris.type.DirectionType
 import com.kbapps.ephemeris.type.TwilightType
-import org.threeten.bp.ZoneOffset
+import java.time.ZoneOffset
 import java.util.*
 
 /**
