@@ -4,7 +4,7 @@ plugins {
     java
     maven
 
-    kotlin("jvm") version "1.4.31"
+    kotlin("jvm") version "1.6.10"
 
     `maven-publish`
 
@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.kbapps.ephemeris"
-version = "2.0.0"
+version = "2.0.1"
 
 repositories {
     mavenCentral()
@@ -38,6 +38,7 @@ tasks.jacocoTestReport {
         html.destination = file("$buildDir/reports/coverage")
     }
 }
+
 tasks.jacocoTestCoverageVerification {
     violationRules {
         rule {
@@ -70,6 +71,19 @@ tasks {
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.kb0"
+            artifactId = "kotlin-ephemeris"
+            version = "2.0.1"
+
+            from(components["java"])
+        }
+    }
 }
