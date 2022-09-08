@@ -1,8 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    java
-
     kotlin("jvm") version "1.6.10"
 
     `maven-publish`
@@ -89,7 +87,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = java.net.URI("https://github.com/kb0/kotlin-ephemeris")
+            url = uri("https://github.com/kb0/kotlin-ephemeris")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
