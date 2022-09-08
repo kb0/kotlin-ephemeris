@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    maven
 
     kotlin("jvm") version "1.6.10"
 
@@ -12,7 +11,7 @@ plugins {
 }
 
 group = "com.kbapps.ephemeris"
-version = "2.0.1"
+version = "2.1.0"
 
 repositories {
     mavenCentral()
@@ -81,9 +80,20 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.kb0"
             artifactId = "kotlin-ephemeris"
-            version = "2.0.1"
+            version = "2.1.0"
 
             from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = java.net.URI("https://github.com/kb0/kotlin-ephemeris")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
         }
     }
 }

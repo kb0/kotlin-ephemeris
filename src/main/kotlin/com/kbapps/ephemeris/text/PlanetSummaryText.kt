@@ -6,36 +6,30 @@ import com.kbapps.ephemeris.JulianDate
 import com.kbapps.ephemeris.planet.LunarState
 import com.kbapps.ephemeris.planet.PlanetMilestone
 import com.kbapps.ephemeris.type.DirectionType
-import java.time.ZoneOffset
+import java.time.ZoneId
 import java.time.ZonedDateTime
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
 data class PlanetSummaryText(
-    val daytime: String,
+    val daytime: Int?,
 
     // lunar extra summary
     var lunarState: LunarState? = null,
 
-    val riseTime: String,
     val riseDatetime: ZonedDateTime?,
     val riseAzimuth: Double?,
-    val dropTime: String,
     val dropDatetime: ZonedDateTime?,
     val dropAzimuth: Double?,
-    val transitTime: String,
     val transitDatetime: ZonedDateTime?,
     val transitElevation: Double?
 ) {
 
     companion object {
 
-        private const val DURATION_FORMAT = "%d:%02d"
-
         fun from(
             planetMilestone: PlanetMilestone,
-            zoneOffset: ZoneOffset,
-            is12HoursFormat: Boolean
+            zoneId: ZoneId
         ): PlanetSummaryText {
             val rise = planetMilestone.getHorizontalPosition(DirectionType.RISE)
             val drop = planetMilestone.getHorizontalPosition(DirectionType.DROP)
@@ -52,27 +46,16 @@ data class PlanetSummaryText(
                 }
             }
 
-            // planetSummary.daytime = (dayDuration == -1 ? "" : String.format("%d:%02d:%02d", dayDuration / 3600, (dayDuration % 3600) / 60, (dayDuration % 60)));
-            //planetSummary.riseDate = (rise != null ? simpleDateFormat.format(DateUtils.toCalendar(rise.jd).getTime()) : "");
-            //planetSummary.dropDate = (rise != null ? simpleDateFormat.format(DateUtils.toCalendar(rise.jd).getTime()) : "");
-
             return PlanetSummaryText(
-                daytime = if (dayDuration == -1) "" else String.format(
-                    DURATION_FORMAT,
-                    dayDuration / 3600,
-                    dayDuration % 3600 / 60
-                ),
+                daytime = if (dayDuration == -1) null else dayDuration,
 
-                riseTime = JulianDate.toTimeString(rise?.jd, zoneOffset, is12HoursFormat),
-                riseDatetime = JulianDate.toUTC(rise?.jd),
+                riseDatetime = JulianDate.toUTC(rise?.jd)?.withZoneSameInstant(zoneId),
                 riseAzimuth = rise?.azimuthInDeg,
 
-                dropTime = JulianDate.toTimeString(drop?.jd, zoneOffset, is12HoursFormat),
-                dropDatetime = JulianDate.toUTC(drop?.jd),
+                dropDatetime = JulianDate.toUTC(drop?.jd)?.withZoneSameInstant(zoneId),
                 dropAzimuth = drop?.azimuthInDeg,
 
-                transitTime = JulianDate.toTimeString(transit?.jd, zoneOffset, is12HoursFormat),
-                transitDatetime = JulianDate.toUTC(transit?.jd),
+                transitDatetime = JulianDate.toUTC(transit?.jd)?.withZoneSameInstant(zoneId),
                 transitElevation = transit?.elevationInDeg
             )
         }

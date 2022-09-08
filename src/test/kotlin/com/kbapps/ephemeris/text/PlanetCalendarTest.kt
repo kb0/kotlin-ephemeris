@@ -140,17 +140,27 @@ class PlanetCalendarTest {
 
         val test = calendarData[0][model]
         riseTime?.let {
-            assertEquals(LocalTime.parse(riseTime).format(formatter), test?.riseTime, test.toString())
+            assertEquals(
+                LocalTime.parse(riseTime).format(formatter),
+                test?.riseDatetime?.toLocalTime()?.format(formatter),
+                test.toString()
+            )
             assertEquals(riseAz!!, test?.riseAzimuth!!, 0.01)
         }
 
         dropTime?.let {
-            assertEquals(LocalTime.parse(dropTime).format(formatter), test?.dropTime)
+            assertEquals(
+                LocalTime.parse(dropTime).format(formatter),
+                test?.dropDatetime?.toLocalTime()?.format(formatter)
+            )
             assertEquals(dropAz!!, test?.dropAzimuth!!, 0.01)
         }
 
         transitTime?.let {
-            assertEquals(LocalTime.parse(transitTime).format(formatter), test?.transitTime)
+            assertEquals(
+                LocalTime.parse(transitTime).format(formatter),
+                test?.transitDatetime?.toLocalTime()?.format(formatter)
+            )
             assertEquals(transitEl!!, test?.transitElevation!!, 0.01)
         }
     }

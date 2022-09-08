@@ -29,14 +29,15 @@ data class PlanetMilestone(
 
         fun from(
             planetModel: PlanetModel,
-            dateTime: ZonedDateTime,
+            localDateTime: ZonedDateTime,
             latitudeInDeg: Double,
             longitudeInDeg: Double
         ): PlanetMilestone {
             // start of current day
-            val jdTimeStartOfDay = JulianDate.toJD(dateTime.withHour(0).withMinute(0).withSecond(0).withNano(1))
+            val jdTimeStartOfDay =
+                JulianDate.toJD(localDateTime.withHour(0).withMinute(0).withSecond(0).withNano(1))
             // current time
-            val jdTimeCurrentTime = JulianDate.toJD(dateTime)
+            val jdTimeCurrentTime = JulianDate.toJD(localDateTime)
 
             val planetMilestone = PlanetMilestone(
                 startOfDayPosition =
