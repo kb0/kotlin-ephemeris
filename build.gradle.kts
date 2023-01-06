@@ -78,7 +78,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.kb0"
             artifactId = "kotlin-ephemeris"
-            version = "2.1.0"
+            version = project.version.toString()
 
             from(components["java"])
         }
