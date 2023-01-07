@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.util.*
 
 plugins {
     kotlin("jvm") version "1.6.10"
@@ -74,6 +75,15 @@ tasks.withType<KotlinCompile> {
 }
 
 publishing {
+    val props = Properties().apply {
+        load(
+            file(
+                System.getenv("repoConfig")
+                    ?: "${System.getProperty("user.home")}${File.separator}repository.properties"
+            ).inputStream()
+        )
+    }
+
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.kb0"
@@ -85,11 +95,26 @@ publishing {
     }
 
     repositories {
-        maven {
-            url = uri("https://maven.pkg.github.com/kb0/kotlin-ephemeris")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+        if (props.getProperty("publish.store") != null) {
+            maven {
+                url = uri(props.getProperty("publish.store"))
+                credentials(HttpHeaderCredentials::class) {
+                    name = "Deploy-Token"
+                    value = props.getProperty("publish.token")
+                }
+                authentication {
+                    create<HttpHeaderAuthentication>("header")
+                }
+            }
+        }
+
+        if (System.getenv("GITHUB_TOKEN") != null) {
+            maven {
+                url = uri("https://maven.pkg.github.com/kb0/kotlin-ephemeris")
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
             }
         }
     }
