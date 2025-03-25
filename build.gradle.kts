@@ -75,13 +75,15 @@ tasks.withType<KotlinCompile> {
 }
 
 publishing {
-    val props = Properties().apply {
-        load(
-            file(
-                System.getenv("repoConfig")
-                    ?: "${System.getProperty("user.home")}${File.separator}repository.properties"
-            ).inputStream()
-        )
+    val props = Properties()
+
+    file(
+        System.getenv("repoConfig")
+            ?: "${System.getProperty("user.home")}${File.separator}repository.properties"
+    ).let {
+        if (it.exists()) {
+            props.load(it.inputStream())
+        }
     }
 
     publications {
