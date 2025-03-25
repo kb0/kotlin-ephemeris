@@ -136,7 +136,7 @@ class PlanetCalendarTest {
         val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val grDate = ZonedDateTime.parse(date)
 
-        val calendarData = PlanetCalendar.calendar(grDate, 1, latitude, longitude, false)
+        val calendarData = PlanetCalendar.calendar(grDate, 1, latitude, longitude)
 
         val test = calendarData[0][model]
         riseTime?.let {

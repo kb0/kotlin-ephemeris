@@ -3,6 +3,7 @@ package com.kbapps.ephemeris.text
 
 import com.kbapps.ephemeris.Constants
 import com.kbapps.ephemeris.JulianDate
+import com.kbapps.ephemeris.planet.Calculator
 import com.kbapps.ephemeris.planet.LunarState
 import com.kbapps.ephemeris.planet.PlanetMilestone
 import com.kbapps.ephemeris.type.DirectionType
@@ -16,6 +17,8 @@ data class PlanetSummaryText(
 
     // lunar extra summary
     var lunarState: LunarState? = null,
+
+    val longitude: MutableList<Double>,
 
     val riseDatetime: ZonedDateTime?,
     val riseAzimuth: Double?,
@@ -48,6 +51,8 @@ data class PlanetSummaryText(
 
             return PlanetSummaryText(
                 daytime = if (dayDuration == -1) null else dayDuration,
+
+                longitude = mutableListOf(Calculator.normalizeDegree(planetMilestone.startOfDayPosition.sLongitude)),
 
                 riseDatetime = JulianDate.toUTC(rise?.jd)?.withZoneSameInstant(zoneId),
                 riseAzimuth = rise?.azimuthInDeg,

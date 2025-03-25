@@ -23,6 +23,12 @@ data class PlanetPosition(
 
     var angularRadius: Double = 0.0
 ) {
+    val sLongitudeInDeg: Double
+        get() = sLongitude * Constants.RAD_TO_DEG
+
+    val sLatitudeInDeg: Double
+        get() = sLatitude * Constants.RAD_TO_DEG
+
 
     val azimuthInDeg: Double
         get() = azimuthInRad * Constants.RAD_TO_DEG

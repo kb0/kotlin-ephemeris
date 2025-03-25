@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.*
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.9.22"
 
     `maven-publish`
 
@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.kbapps.ephemeris"
-version = "2.1.1"
+version = "2.2.1"
 
 repositories {
     mavenCentral()

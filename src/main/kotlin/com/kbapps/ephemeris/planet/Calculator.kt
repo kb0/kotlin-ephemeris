@@ -27,6 +27,10 @@ object Calculator {
         return r
     }
 
+    fun normalizeDegree(deg: Double): Double {
+        return ((deg % 360) + 360) % 360
+    }
+
 
     /**
      * @param position           - planet position

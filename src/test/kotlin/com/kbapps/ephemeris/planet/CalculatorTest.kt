@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
 import java.time.*
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class CalculatorTest {
@@ -228,12 +229,11 @@ class CalculatorTest {
                 ).forEach { (name, str) ->
                     val date = LocalDateTime.parse(
                         year + " " + str.trim(),
-                        DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm"))
+                        DateTimeFormatter.ofPattern("yyyy MMM dd  HH:mm", Locale.US)
+                    )
 
                     println("ts(${date.atZone(ZoneOffset.UTC).toEpochSecond()}) to $name,")
                 }
-
-
             }
     }
 }

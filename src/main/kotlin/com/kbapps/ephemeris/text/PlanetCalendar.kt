@@ -10,8 +10,7 @@ object PlanetCalendar {
         localDateTime: ZonedDateTime,
         days: Int,
         latitude: Double,
-        longitude: Double,
-        is12HoursFormat: Boolean
+        longitude: Double
     ): List<Map<PlanetModel.Type, PlanetSummaryText>> {
         val calendarSummary = ArrayList<Map<PlanetModel.Type, PlanetSummaryText>>()
 
@@ -38,6 +37,15 @@ object PlanetCalendar {
 
             calendarSummary.add(daySummary)
             if (i > 0) {
+                calendarSummary[i - 1][PlanetModel.Type.SOLAR]?.let {
+                    calendarSummary[i - 1][PlanetModel.Type.SOLAR]!!.longitude
+                        .add(Calculator.normalizeDegree(solarData.startOfDayPosition.sLongitude))
+                }
+                calendarSummary[i - 1][PlanetModel.Type.LUNAR]?.let {
+                    calendarSummary[i - 1][PlanetModel.Type.LUNAR]!!.longitude
+                        .add(Calculator.normalizeDegree(lunarData.startOfDayPosition.sLongitude))
+                }
+
                 calendarSummary[i - 1][PlanetModel.Type.LUNAR]?.lunarState?.let { lastLunarState ->
                     // setup phase name for previous day
                     calendarSummary[i - 1][PlanetModel.Type.LUNAR]?.lunarState!!.phaseName =
@@ -50,8 +58,6 @@ object PlanetCalendar {
         }
 
         // remove extra day (extra day for lunar phase name
-        calendarSummary.removeAt(calendarSummary.size - 1)
-
-        return calendarSummary
+        return calendarSummary.dropLast(1)
     }
 }
